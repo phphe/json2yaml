@@ -91,8 +91,11 @@
           if (!handler) {
             throw new Error('what the crap: ' + typeOf(val));
           }
-
-          output += '\n' + indentLevel + k + ': ' + handler(val);
+          let k2 = k
+          if (k.match(/^[\d-]/)) {
+            k2 = `"${k}"`
+          }
+          output += '\n' + indentLevel + k2 + ': ' + handler(val);
         });
         indentLevel = indentLevel.replace(/  /, '');
 
